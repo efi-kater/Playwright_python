@@ -3,15 +3,16 @@ from playwright.async_api import async_playwright, expect, Page
 import helpers
 
 async def test_login_succeeds(page):
-    await helpers.login(page)
+    page = await helpers.login(page)
 
     # verify inventory page
+    await expect(page).to_have_url("https://www.saucedemo.com/inventory.html", timeout=5000)
     await expect(page.locator("[data-test=\"title\"]")).to_contain_text("Products")
     await expect(page.locator("[data-test=\"shopping-cart-link\"]")).to_be_visible()
     await expect(page.locator("[data-test=\"product-sort-container\"]")).to_be_visible()
 
 async def test_add_product_to_cart(page):
-    await helpers.login(page)
+    page =await helpers.login(page)
 
     # select inventory item
     item_name = await page.locator('[data-test="inventory-item-name"]').first.text_content()

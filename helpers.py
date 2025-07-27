@@ -22,7 +22,8 @@ async def login(page):
     await page.locator("[data-test=\"password\"]").fill(PASSWORD)
     await page.locator("[data-test=\"login-button\"]").click()
 
-    #verify login
-    await expect(page).to_have_url("https://www.saucedemo.com/inventory.html", timeout=5000)
+    return page
+
+
 
 
