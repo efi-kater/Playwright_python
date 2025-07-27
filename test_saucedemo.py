@@ -2,7 +2,6 @@ import pytest
 from playwright.async_api import async_playwright, expect, Page
 import helpers
 
-@pytest.mark.asyncio
 async def test_login_succeeds(page):
     await helpers.login(page)
 
@@ -11,7 +10,6 @@ async def test_login_succeeds(page):
     await expect(page.locator("[data-test=\"shopping-cart-link\"]")).to_be_visible()
     await expect(page.locator("[data-test=\"product-sort-container\"]")).to_be_visible()
 
-@pytest.mark.asyncio
 async def test_add_product_to_cart(page):
     await helpers.login(page)
 
